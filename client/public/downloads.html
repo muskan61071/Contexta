@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contexta - Academic Project PDF & Document Downloads</title>
+  <style>
+    :root {
+      --bg: #0b132b;
+      --panel: #1c2541;
+      --card: #14213d;
+      --accent: #48cae4;
+      --primary: #0077b6;
+      --success: #06d6a0;
+      --pdf-red: #e63946;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 960px;
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(230, 57, 70, 0.15);
+      border: 1px solid var(--pdf-red);
+      color: #ff6b6b;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+    p.subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+    .download-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .download-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .meta-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .meta-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .meta-list li strong {
+      color: var(--text);
+    }
+    .btn-group-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-pdf {
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(230, 57, 70, 0.35);
+    }
+    .btn-pdf:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      padding: 0.6rem 1rem;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .footer-links {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">Official PDF & Printout Downloads</div>
+    <h1>Contexta: Project PPT & Academic Report</h1>
+    <p class="subtitle">Download both the print-ready <strong>PDF documents</strong> and the editable presentation/report files for <strong>“A Real-Time Context-Aware Ambiguity Resolution and Miscommunication Prevention System”</strong>.</p>
+
+    <div class="cards-grid">
+      <!-- PPT Card -->
+      <div class="download-card">
+        <div>
+          <div class="card-icon">📊</div>
+          <h2 class="card-title">Project Presentation (PPT)</h2>
+          <p class="card-desc">18-slide academic presentation with architecture diagrams, code explanations, test results, and complete viva talking points on every slide.</p>
+          <ul class="meta-list">
+            <li><span>📑</span> <strong>Slides:</strong> 18 Widescreen (16:9) Slides</li>
+            <li><span>🎨</span> <strong>Visuals:</strong> Figures 4.1 & 4.5 Embedded</li>
+            <li><span>💡</span> <strong>Viva Prep:</strong> Questions & Answers included</li>
+          </ul>
+        </div>
+        <div class="btn-group-vertical">
+          <a href="/Contexta_Project_Presentation.pdf" download="Contexta_Project_Presentation.pdf" class="btn btn-pdf">
+            📄 Download Presentation PDF
+          </a>
+          <a href="/Contexta_Project_Presentation.pptx" download="Contexta_Project_Presentation.pptx" class="btn btn-secondary">
+            📊 Download Editable .PPTX
+          </a>
+        </div>
+      </div>
+
+      <!-- Report Card -->
+      <div class="download-card">
+        <div>
+          <div class="card-icon">📑</div>
+          <h2 class="card-title">Academic Project Report (Thesis)</h2>
+          <p class="card-desc">Complete 50-page university thesis report with Front Matter (Cover, Certificate, Declaration, Abstract), Chapters 1 to 10, 6 diagrams, and appendices.</p>
+          <ul class="meta-list">
+            <li><span>📚</span> <strong>Scope:</strong> Complete Chapters 1–10 + Appendices</li>
+            <li><span>📊</span> <strong>Diagrams:</strong> 6 High-Resolution Architectural Figures</li>
+            <li><span>📋</span> <strong>Testing:</strong> 16 Vitest Tests & 5 Test Tables</li>
+          </ul>
+        </div>
+        <div class="btn-group-vertical">
+          <a href="/Contexta_Project_Report.pdf" download="Contexta_Project_Report.pdf" class="btn btn-pdf">
+            📄 Download Project Report PDF
+          </a>
+          <a href="/Contexta_Project_Report.docx" download="Contexta_Project_Report.docx" class="btn btn-secondary">
+            📑 Download Editable .DOCX
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <p>← <a href="/">Return to Conversation Analyzer Web Application</a></p>
+    </div>
+  </div>
+</body>
+</html>

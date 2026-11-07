@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contexta - Academic Project Presentation Slideshow</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --panel: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary: #0077b6;
+      --accent: #48cae4;
+      --mint: #06d6a0;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand-badge {
+      background: rgba(72, 202, 228, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .proj-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .btn:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #ffffff;
+      border: none;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Stage */
+    .stage-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .slide-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 10;
+      user-select: none;
+    }
+    .nav-arrow:hover {
+      background: var(--accent);
+      color: #0b132b;
+      transform: translateY(-50%) scale(1.08);
+    }
+    .nav-prev { left: 16px; }
+    .nav-next { right: 16px; }
+
+    /* Controls Bar */
+    .controls-bar {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 1.25rem;
+    }
+    .slide-counter {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .shortcut-hints {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .shortcut-hints kbd {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: #ffffff;
+    }
+
+    /* Speaker Notes Card */
+    .notes-card {
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 1100px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .notes-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      color: var(--mint);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .notes-content {
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      white-space: pre-line;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--mint);
+    }
+
+    /* Thumbnails Row */
+    .thumbnails-row {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      max-width: 1100px;
+      width: 100%;
+      padding: 0.5rem 0 1rem 0;
+    }
+    .thumb-item {
+      flex: 0 0 120px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+    .thumb-item:hover {
+      opacity: 0.9;
+      border-color: var(--border);
+    }
+    .thumb-item.active {
+      border-color: var(--accent);
+      opacity: 1;
+      box-shadow: 0 0 15px rgba(72, 202, 228, 0.4);
+    }
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <span class="brand-badge">PowerPoint Mode</span>
+      <span class="proj-title">Contexta: Academic Project Presentation</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <a href="/Contexta_Project_Presentation.pptx" download class="btn">📊 Download .PPTX</a>
+      <a href="/Contexta_Project_Presentation.pdf" download class="btn btn-primary">📄 Download PDF</a>
+      <a href="/" class="btn">← Back to App</a>
+    </div>
+  </header>
+
+  <div class="stage-container">
+    <!-- Slide Screen -->
+    <div class="slide-wrapper" id="slideStage">
+      <div class="nav-arrow nav-prev" onclick="prevSlide()">‹</div>
+      <img id="currentSlideImg" class="slide-img" src="" alt="Slide view" />
+      <div class="nav-arrow nav-next" onclick="nextSlide()">›</div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="slide-counter" id="slideCounter">Slide 1 of 18</div>
+      <div class="shortcut-hints">
+        Use <kbd>←</kbd> <kbd>→</kbd> arrow keys, <kbd>Space</kbd>, or click arrows to navigate. Press <kbd>F</kbd> for fullscreen.
+      </div>
+    </div>
+
+    <!-- Speaker Notes & Viva Defense Points -->
+    <div class="notes-card">
+      <div class="notes-head">
+        <span>💡 Presentation & Viva Talking Points (For Teachers & Evaluators)</span>
+      </div>
+      <div class="notes-content" id="speakerNotes"></div>
+    </div>
+
+    <!-- Thumbnails Scroller -->
+    <div class="thumbnails-row" id="thumbsRow"></div>
+  </div>
+
+  <script>
+    const slides = [{'num': 1, 'image': '/slides/slide_01.png', 'notes': "VIVA TALKING POINTS (SLIDE 1):\n- Welcome the examiners and introduce the project title: 'A Real-Time Context-Aware Ambiguity Resolution and Miscommunication Prevention System' (Contexta).\n- Emphasize that in modern asynchronous remote collaboration (Slack, Teams, clinical handoffs, legal communications), 30%+ of chat messages exhibit ambiguity that goes unaddressed until critical errors happen.\n- Contexta solves this by acting as an intelligent linguistic monitor that intercepts multi-turn chat conversations, detects ambiguous words/phrases in real-time, calculates a deterministic miscommunication risk score, resolves antecedents using conversational context, and proposes clear rewrites or targeted clarification questions."}, {'num': 2, 'image': '/slides/slide_02.png', 'notes': "VIVA TALKING POINTS (SLIDE 2):\n- Examiner Question: 'Why can't we just use ChatGPT or Claude for this?'\n- Answer: Generative LLMs are non-deterministic, cost 1-3 seconds per message, incur continuous token costs, and risk hallucinating entities that never existed in the chat. Contexta delivers a sub-50ms deterministic pipeline that provides explainable confidence scores, mathematically grounded risk calculations, and runs completely locally or on an edge gateway."}, {'num': 3, 'image': '/slides/slide_03.png', 'notes': 'VIVA TALKING POINTS (SLIDE 3):\n- Highlight how the 4 categories represent distinct linguistic phenomena: Lexical (Word-level), Anaphoric (Reference-level), Syntactic (Sentence structure-level), and Contextual (Pragmatic/Argument omission-level).\n- In standard chat tools, all four slip through undetected because spell checkers and grammars only check syntax validity, not semantic clarity!'}, {'num': 4, 'image': '/slides/slide_04.png', 'notes': 'VIVA TALKING POINTS (SLIDE 4):\n- Explain the distinction between functional requirements and project scope.\n- Clarify that the system was engineered to operate 100% offline without requiring proprietary third-party API keys (e.g. OpenAI/Anthropic), protecting corporate privacy and ensuring predictable latency.'}, {'num': 5, 'image': '/slides/slide_05.png', 'notes': "VIVA TALKING POINTS (SLIDE 5):\n- This matrix is critical for viva examiners. Point out that traditional grammar checkers miss semantic ambiguity completely because sentences like 'Meet me at the bank' are grammatically flawless!\n- LLMs are great for open-ended generation, but for real-time chat monitoring, they introduce unacceptable latency, recurring financial cost, and privacy concerns."}, {'num': 6, 'image': '/slides/slide_06.png', 'notes': 'VIVA TALKING POINTS (SLIDE 6):\n- Explain the 3 tiers: Frontend (React 18), Middleware Gateway (Express), and Backend Services (FastAPI NLP + SQLite).\n- Highlight the resilience pattern: The client features an embedded TypeScript linguistic parser that acts as a zero-latency fallback if the backend service is offline, ensuring 100% operational uptime.'}, {'num': 7, 'image': '/slides/slide_07.png', 'notes': "VIVA TALKING POINTS (SLIDE 7):\n- Explain the exact Python logic on the right.\n- When 'detect_pronoun_ambiguity' inspects the text, it queries the extracted entity list. If more than one candidate matches the gender/number of the pronoun (e.g. Maya and Rina both match 'she'), ambiguity is triggered deterministically without guessing!"}, {'num': 8, 'image': '/slides/slide_08.png', 'notes': "VIVA TALKING POINTS (SLIDE 8):\n- Point out that Contexta does NOT treat messages in isolation.\n- Isolated analysis causes false negatives. By indexing the last N turns, Contexta recognizes that 'Meet at the bank' in Turn 2 is completely disambiguated if Turn 1 mentioned 'I am bringing my fishing rod to the river'!"}, {'num': 9, 'image': '/slides/slide_09.png', 'notes': "VIVA TALKING POINTS (SLIDE 9):\n- Explain the mathematical formula for the Miscommunication Risk Index.\n- Explain why entropy and margin are used: When two interpretations are equally plausible (Margin=0), human receivers have a 50% coin-toss chance of choosing the wrong one. Contexta's risk index shoots up to 82% to warn the sender before damage occurs."}, {'num': 10, 'image': '/slides/slide_10.png', 'notes': "VIVA TALKING POINTS (SLIDE 10):\n- Explain the user experience: Users don't just want to be told 'your sentence is ambiguous'—they want an instant, one-click fix.\n- Contexta creates clean, natural, grammatically correct rewrites that eliminate the ambiguity while preserving the original intent."}, {'num': 11, 'image': '/slides/slide_11.png', 'notes': 'VIVA TALKING POINTS (SLIDE 11):\n- Clarification questions bridge the gap between machine detection and human intent.\n- Instead of forcing the user to guess why the system flagged something, Contexta presents an explicit question with clickable answers.'}, {'num': 12, 'image': '/slides/slide_12.png', 'notes': 'VIVA TALKING POINTS (SLIDE 12):\n- Emphasize the clean technology separation.\n- React 18 with Vite provides an ultra-responsive UI.\n- Express handles API routing, CORS, and request sanitation.\n- FastAPI with Python provides the high-performance NLP computation.\n- SQLite provides zero-config relational storage for conversation records.'}, {'num': 13, 'image': '/slides/slide_13.png', 'notes': 'VIVA TALKING POINTS (SLIDE 13):\n- Explain the end-to-end data flow shown in the flowchart:\n  1. Input is parsed and normalized into turns.\n  2. Ambiguity rules detect tokens.\n  3. Context window extracts antecedent candidates.\n  4. Miscommunication risk is calculated.\n  5. Rewrites and clarification questions are assembled and rendered.'}, {'num': 14, 'image': '/slides/slide_14.png', 'notes': 'VIVA TALKING POINTS (SLIDE 14):\n- Emphasize how clean and user-friendly the revamped UI is:\n- Removed all confusing duplicate text boxes, private chat boxes, and broken buttons.\n- Created a single, intuitive conversation input box, supported by the Demo Examples sidebar on the left, beautiful chat bubbles in the middle, and comprehensive analysis cards below.'}, {'num': 15, 'image': '/slides/slide_15.png', 'notes': "VIVA TALKING POINTS (SLIDE 15):\n- This slide provides empirical proof that Contexta correctly resolves all 5 demo categories.\n- Notice how the Lexical Ambiguity case has a low risk score (24%) because Contexta detected the keyword 'river' in the previous turn and resolved 'bank' to 'river bank' with 0.88 confidence!\n- Contrast that with the Pronoun Ambiguity case where competing antecedents yield an 82% risk score."}, {'num': 16, 'image': '/slides/slide_16.png', 'notes': 'VIVA TALKING POINTS (SLIDE 16):\n- Explain the broad applicability across domains: Engineering, Healthcare, Legal, and Support.\n- In healthcare especially, pronoun ambiguity in patient handoffs is a recognized cause of adverse clinical events. Contexta provides a non-invasive software safeguard.'}, {'num': 17, 'image': '/slides/slide_17.png', 'notes': 'VIVA TALKING POINTS (SLIDE 17):\n- Academic honesty is essential during viva defenses. Acknowledging current limitations demonstrates engineering maturity.\n- Clearly explain that rule-based deterministic methods were prioritized for speed, zero hallucination, and explainability, and that future iterations can integrate lightweight quantized local neural models.'}, {'num': 18, 'image': '/slides/slide_18.png', 'notes': 'VIVA TALKING POINTS (SLIDE 18):\n- Conclude by reiterating the core value: Contexta prevents misunderstandings before they cause damage.\n- Thank the examiners and faculty for their time and invite questions.\n- Be prepared to offer a live demonstration using the 5 demo examples in the web app.'}];
+    let currentIndex = 0;
+
+    const imgEl = document.getElementById('currentSlideImg');
+    const counterEl = document.getElementById('slideCounter');
+    const notesEl = document.getElementById('speakerNotes');
+    const thumbsRow = document.getElementById('thumbsRow');
+
+    function init() {
+      // Render thumbnails
+      slides.forEach((s, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-item ${idx === 0 ? 'active' : ''}`;
+        thumb.id = `thumb-${idx}`;
+        thumb.innerHTML = `<img src="${s.image}" alt="Slide ${s.num}" />`;
+        thumb.onclick = () => goToSlide(idx);
+        thumbsRow.appendChild(thumb);
+      });
+      updateView();
+    }
+
+    function updateView() {
+      const current = slides[currentIndex];
+      imgEl.src = current.image;
+      counterEl.textContent = `Slide ${current.num} of ${slides.length}`;
+      notesEl.textContent = current.notes || "Ready for presentation. Explain the slide content clearly to the examiners.";
+
+      // Update active thumbnail
+      document.querySelectorAll('.thumb-item').forEach((el, idx) => {
+        el.classList.toggle('active', idx === currentIndex);
+      });
+
+      // Auto-scroll active thumbnail into view
+      const activeThumb = document.getElementById(`thumb-${currentIndex}`);
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateView();
+      }
+    }
+
+    function goToSlide(idx) {
+      currentIndex = idx;
+      updateView();
+    }
+
+    function toggleFullscreen() {
+      const stage = document.getElementById('slideStage');
+      if (!document.fullscreenElement) {
+        stage.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    });
+
+    window.onload = init;
+  </script>
+</body>
+</html>

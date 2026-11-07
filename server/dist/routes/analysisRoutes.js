@@ -1,0 +1,8 @@
+import { Router } from 'express';
+import { analyzeMessage, previewMessage } from '../controllers/analysisController.js';
+import { validateBody } from '../middleware/validate.js';
+import { analysisRequestSchema } from '../schemas/analysisSchema.js';
+const router = Router();
+router.post('/', validateBody(analysisRequestSchema), analyzeMessage);
+router.post('/preview', validateBody(analysisRequestSchema), previewMessage);
+export default router;

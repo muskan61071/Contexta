@@ -1,0 +1,1 @@
+export default function ActivityChart({dates}:{dates:string[]}){return <section className="chart-card"><h3>Saved analysis activity</h3><p>{dates.length?`${dates.length} saved analyses`: 'No saved activity yet.'}</p></section>}

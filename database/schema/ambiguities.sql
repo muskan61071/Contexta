@@ -1,0 +1,1 @@
+CREATE TABLE ambiguities (id TEXT PRIMARY KEY, analysis_id TEXT NOT NULL, expression TEXT NOT NULL, ambiguity_type TEXT NOT NULL, resolved_reference TEXT, evidence_score INTEGER NOT NULL, FOREIGN KEY(analysis_id) REFERENCES analyses(id));

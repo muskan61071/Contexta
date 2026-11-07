@@ -1,0 +1,1 @@
+export function validateMessage(value:string):string|null { if(!value.trim())return 'Enter a message to analyze.'; if(value.length>5000)return 'Messages must be 5,000 characters or fewer.'; return null; }

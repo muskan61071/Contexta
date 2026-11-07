@@ -1,0 +1,1 @@
+CREATE TABLE messages (id TEXT PRIMARY KEY, conversation_id TEXT NOT NULL, speaker TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(conversation_id) REFERENCES conversations(id));

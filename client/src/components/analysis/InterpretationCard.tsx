@@ -1,0 +1,2 @@
+import type {Interpretation} from '../../types/interpretation';
+export default function InterpretationCard({item}:{item:Interpretation}){return <article className="interpretation"><div className="interpretation-top"><b>{item.meaning}</b><span>{item.confidence}% support</span></div><p className="evidence-copy">{item.support.length?item.support.join(' · '):'No direct supporting context found.'}</p></article>}

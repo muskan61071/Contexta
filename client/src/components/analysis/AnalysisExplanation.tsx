@@ -1,0 +1,1 @@
+export default function AnalysisExplanation({text,steps}:{text:string;steps:string[]}){return <section className="explanation-text"><p>{text}</p><ol>{steps.map(step=><li key={step}>{step}</li>)}</ol></section>}

@@ -1,0 +1,1 @@
+CREATE TABLE interpretations (id TEXT PRIMARY KEY, analysis_id TEXT NOT NULL, meaning TEXT NOT NULL, evidence_score INTEGER NOT NULL, supporting_context TEXT NOT NULL, conflicting_context TEXT NOT NULL, FOREIGN KEY(analysis_id) REFERENCES analyses(id));

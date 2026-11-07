@@ -1,0 +1,1 @@
+export default function HistoryFilters({value,onChange}:{value:string;onChange:(v:string)=>void}){return <input aria-label="Search history" value={value} onChange={e=>onChange(e.target.value)} placeholder="Search messages…"/>}

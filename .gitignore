@@ -1,0 +1,10 @@
+node_modules/
+client/dist/
+client/.env
+nlp-engine/.venv/
+nlp-engine/__pycache__/
+nlp-engine/app/__pycache__/
+nlp-engine/*.sqlite3
+*.py[cod]
+.env
+.DS_Store

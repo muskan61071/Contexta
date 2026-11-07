@@ -1,0 +1,19 @@
+{
+  "name": "context-aware-ambiguity-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Context-Aware Ambiguity Detection and Resolution System",
+  "scripts": {
+    "dev": "concurrently --kill-others --names \"NLP,API,WEB\" --prefix-colors \"magenta.bold,blue.bold,cyan.bold\" \"npm run dev:nlp\" \"npm run dev:server\" \"npm run dev:client\"",
+    "start": "npm run dev",
+    "start:multi-window": "powershell -ExecutionPolicy Bypass -File ./start-all.ps1",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "dev:nlp": "node scripts/dev-nlp.mjs",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

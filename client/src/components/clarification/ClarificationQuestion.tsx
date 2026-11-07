@@ -1,0 +1,1 @@
+export default function ClarificationQuestion({question,onAnswer}:{question:string;onAnswer?:(answer:string)=>void}){return <div className="question-row"><p>{question}</p>{onAnswer&&<button onClick={()=>{const value=window.prompt(question);if(value?.trim())onAnswer(value.trim())}}>Answer</button>}</div>}

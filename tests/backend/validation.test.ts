@@ -1,0 +1,3 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {analysisRequestSchema} from '../../server/src/schemas/analysisSchema.js';
+test('analysis schema accepts bounded message and context',()=>{const parsed=analysisRequestSchema.parse({message:'Send it',context:[{speaker:'Maya',text:'The report is ready.'}]});assert.equal(parsed.context.length,1)});
+test('analysis schema rejects empty messages and oversized context',()=>{assert.equal(analysisRequestSchema.safeParse({message:'  '}).success,false);assert.equal(analysisRequestSchema.safeParse({message:'Hi',context:Array.from({length:101},()=>({text:'x',speaker:'M'}))}).success,false)});

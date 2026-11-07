@@ -1,0 +1,2 @@
+-- No fake analyses or dashboard metrics are seeded.
+-- Demonstration conversations are defined in client/src/data/demoExamples.ts and client/public/demo/examples.json.

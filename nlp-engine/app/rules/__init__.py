@@ -1,0 +1,1 @@
+"""Transparent fallback linguistic rules."""

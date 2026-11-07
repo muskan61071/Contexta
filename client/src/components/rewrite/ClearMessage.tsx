@@ -1,0 +1,1 @@
+export default function ClearMessage({text}:{text:string|null}){return <div className="rewrite-suggestion"><span>CLEAR VERSION</span><p>{text||'Clarification is needed before a supported rewrite is available.'}</p></div>}

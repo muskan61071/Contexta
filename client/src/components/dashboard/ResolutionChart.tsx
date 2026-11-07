@@ -1,0 +1,1 @@
+export default function ResolutionChart({resolved,unresolved}:{resolved:number;unresolved:number}){return <section className="chart-card"><h3>References resolved</h3><p>Resolved <b>{resolved}</b></p><p>Unresolved <b>{unresolved}</b></p></section>}

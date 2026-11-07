@@ -1,0 +1,7 @@
+[
+ {"name":"A report and a meeting","message":"Send it to her after that","context":[{"speaker":"Maya","text":"The project report is ready."},{"speaker":"Leo","text":"Priya needs the report before the review."},{"speaker":"Maya","text":"The team meeting is scheduled for 3 PM."}]},
+ {"name":"Not enough context","message":"Send it to her","context":[]},
+ {"name":"Attachment ambiguity","message":"I saw the man with the telescope","context":[]},
+ {"name":"Two possible people","message":"Rahul told Arjun that he should submit the report","context":[{"speaker":"Maya","text":"Rahul and Arjun are both working on the report."}]},
+ {"name":"Lexical ambiguity","message":"I went to the bank","context":[]}
+]

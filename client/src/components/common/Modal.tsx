@@ -1,0 +1,2 @@
+import type {ReactNode} from 'react';
+export default function Modal({title,children,onClose}:{title:string;children:ReactNode;onClose:()=>void}){return <div className="modal-backdrop" role="presentation" onClick={onClose}><section className="modal" role="dialog" aria-modal="true" aria-label={title} onClick={e=>e.stopPropagation()}><header><b>{title}</b><button onClick={onClose} aria-label="Close">×</button></header>{children}</section></div>}

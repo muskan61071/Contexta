@@ -1,0 +1,1 @@
+export default function RiskChart({counts}:{counts:Record<string,number>}){return <section className="chart-card"><h3>Risk levels</h3>{['Low','Medium','High'].map(k=><p key={k}>{k}<b>{counts[k]||0}</b></p>)}</section>}

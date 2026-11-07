@@ -1,0 +1,2 @@
+import type {ErrorRequestHandler} from 'express';
+export const errorMiddleware:ErrorRequestHandler=(err,_req,res,_next)=>{const status=typeof err?.status==='number'?err.status:502;const message=status>=500?'The analysis service is temporarily unavailable. Please try again.':String(err?.message||'Request failed.');res.status(status).json({message})};

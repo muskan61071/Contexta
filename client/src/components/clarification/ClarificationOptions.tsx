@@ -1,0 +1,1 @@
+export default function ClarificationOptions({options,onSelect}:{options:string[];onSelect:(value:string)=>void}){return <div className="candidate-list">{options.map(value=><button key={value} onClick={()=>onSelect(value)}>{value}</button>)}</div>}

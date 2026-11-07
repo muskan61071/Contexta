@@ -1,0 +1,4 @@
+import {useSyncExternalStore} from 'react';
+type Store<T>={get:()=>T,set:(next:T|((old:T)=>T))=>void,subscribe:(fn:()=>void)=>()=>void};
+export function createStore<T>(initial:T,key?:string):Store<T>{let value=initial;try{const saved=key&&localStorage.getItem(key);if(saved)value=JSON.parse(saved) as T}catch{/* use defaults when storage is unavailable or malformed */}const listeners=new Set<()=>void>();return{get:()=>value,set(next){value=typeof next==='function'?(next as (old:T)=>T)(value):next;try{if(key)localStorage.setItem(key,JSON.stringify(value))}catch{/* storage can be disabled; in-memory state still works */}listeners.forEach(fn=>fn())},subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn)}}}
+export function useStore<T>(store:Store<T>):[T,Store<T>['set']]{const value=useSyncExternalStore(store.subscribe,store.get,store.get);return[value,store.set]}

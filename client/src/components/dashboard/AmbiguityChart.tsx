@@ -1,0 +1,1 @@
+export default function AmbiguityChart({counts}:{counts:Record<string,number>}){const entries=Object.entries(counts);return <section className="chart-card"><h3>Ambiguity types</h3>{entries.length?entries.map(([k,v])=><p key={k}>{k} <b>{v}</b></p>):<p>No saved ambiguity data yet.</p>}</section>}

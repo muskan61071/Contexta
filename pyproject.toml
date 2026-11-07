@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+pythonpath = ["nlp-engine"]
+testpaths = ["tests"]
+addopts = "-q"
